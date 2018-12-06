@@ -21,9 +21,11 @@ class Cell: UITableViewCell {
         }else{
             priortyL.text = ""
         }
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         dateL.text = dateFormatter.string(from: type.dateOfComplete)
+        
     }
     
     override func awakeFromNib() {

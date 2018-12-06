@@ -15,6 +15,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var segmeantedControler: UISegmentedControl!
     @IBOutlet weak var numberofDays: UITextField!
     
+    
+    var newTask: task?
+    
     @IBAction func Tap(_ sender: Any) {
         trySaving()
     }
@@ -46,19 +49,22 @@ class ViewController: UIViewController {
         }
         
         
-        let newTask = task(title: title, taskDescription: details, priorty: priorty!,dateOfComplete:duedate!)
+        newTask = task(title: title, taskDescription: details, priorty: priorty!,dateOfComplete:duedate!)
         print("hello")
-        let stocks = stock.sharedInstance
-        stocks.tasks.append(newTask)
-        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "highway" {
-                let vc = segue.destination as! table
-                vc.tableView.reloadData()
-            }
-        }
+        
+    
         self.performSegue(withIdentifier: "highway", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "highway" {
+            let stocks = stock.sharedInstance
+            stocks.tasks.append(newTask!)
+            let vc = segue.destination as! table
+            vc.tableView.reloadData()
+        }
+    }
 
-
+    
 }
 

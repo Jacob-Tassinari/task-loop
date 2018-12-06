@@ -13,6 +13,7 @@ class table: UITableViewController {
     let stocks = stock.sharedInstance
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         stocks.tasks.append(task(title: "jkl", taskDescription: "jkl", priorty: false, dateOfComplete: Date()))
         tableView.reloadData()
         // Do any additional setup after loading the view.
